@@ -3,18 +3,21 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    {% if app.user %}
+    {# {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
-    {% endif %}
+    {% endif %} #}
 
     <h1>Page d'accueil</h1>
-    <a href="{{path('app_login')}}"<button type="button" class="btn btn-outline-info">Login</button></a>
-    <a href="{{path('app_register')}}"<button type="button" class="btn btn-outline-info">Register</button></a>
+    {% if app.user == false%}
+        <a href="{{path('app_login')}}"<button type="button" class="btn btn-outline-info">Login</button></a>
+        <a href="{{path('app_register')}}"<button type="button" class="btn btn-outline-info">Register</button></a>
+    {% endif %}
+    
     {# <a href="{{path('app_logout')}}"<button type="button">Log Out</button></a> #}
-    {% if is_granted("ROLE_USER") %}
-        <a href="{{path('app_logout')}}"<button type="button" class="btn btn-outline-warning">Log Out</button></a>
+    {% if is_granted("ROLE_ADMIN") %}
+        <a href="#"<button type="button" class="btn btn-outline-warning">Page Admin</button></a>
     {% endif %}
     
 {% endblock %}

@@ -97,21 +97,31 @@ class SecurityController extends AbstractController
         // $user = $repo->find($id);
         $user = $repo->find($id);
         $userInfo = $user->getUserInfo();
-        $form = $this->createForm(UpdateFormType::class, $user);
+        $form = $this->createForm(UpdateFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            // if($form->get('plainPassword')->getData()!=null) {
-            //     $user->setPassword(
-            //     $userPasswordHasher->hashPassword(
-            //             $user,
-            //             $form->get('plainPassword')->getData()
-            //         )
-            //     );
-            // }
-            //$entityManager->persist($user);
-            //$entityManager->flush();
+            if($form->get('email')->getData()!=null){
+                $user->setEmail($form->get('email')->getData());
+            }
+            if($form->get('password')->getData()!=null) {
+                $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+            }
+            if($form->get('avatar')->getData()!=null){
+                $userInfo->setAvatar($form->get('avatar')->getData());
+            }
+            if($form->get('username')->getData()!=null){
+                $userInfo->setUsername($form->get('username')->getData());
+            }
+
+            $entityManager->persist($user);
+            $entityManager->flush();
 
 
             /*$userInfo = new UserInfo();

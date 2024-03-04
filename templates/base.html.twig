@@ -17,8 +17,8 @@
     <!-- Navbar -->
         {# {{include('navbar.html.twig')}} #}
         {{ render(controller(
-        'App\\Controller\\SecurityController::navBar'
-    )) }}
+            'App\\Controller\\SecurityController::navBar'
+        )) }}
         <div>
             {% block body %} {% endblock %}
         </div>

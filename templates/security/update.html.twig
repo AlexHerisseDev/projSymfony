@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Update</h1>
-
+    <h3>(Leave a field empty to not update it)</h3>
     {{ form_start(updateForm) }}
         {{ form_row(updateForm.email) }}
         {{ form_row(updateForm.password, {
@@ -15,7 +15,6 @@
         }) }}
         {{ form_row(updateForm.username, {
             label: "Nom d'utilisateur",
-
         }) }}
 
         <button type="submit" class="btn">Register</button>
