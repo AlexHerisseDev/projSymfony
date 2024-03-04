@@ -24,12 +24,12 @@ class UserInfo
     private $user;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, options={"default": "https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png"} )
      */
     private $avatar;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, options={"default": "username"})
      */
     private $username;
 

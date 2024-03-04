@@ -32,20 +32,21 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            
             $entityManager->persist($user);
+            $entityManager->flush();
 
-            // $userInfo = new UserInfo();
-            // $userInfo->setUser($user);
-            // $userInfo->setUsername("username");
-            // $userInfo->setAvatar("https://www.iconsdb.com/icons/preview/white/square-rounded-xxl.png");
 
-            // $entityManager->persist($userInfo);
+            $userInfo = new UserInfo();
+            $userInfo->setUser($user)
+                    ->setUsername("username")
+                    ->setAvatar("https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Letter_A.svg/768px-Letter_A.svg.png");
 
+            $entityManager->persist($userInfo);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('_profiler');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('registration/register.html.twig', [

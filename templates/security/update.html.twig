@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update{% endblock %}
+
+{% block body %}
+    <h1>Update</h1>
+
+    {{ form_start(updateForm) }}
+        {{ form_row(updateForm.email) }}
+        {{ form_row(updateForm.password, {
+            label: 'Password',
+        }) }}
+        {{ form_row(updateForm.avatar, {
+            label: 'Avatar URL',
+        }) }}
+        {{ form_row(updateForm.username, {
+            label: "Nom d'utilisateur",
+
+        }) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(updateForm) }}
+{% endblock %}
