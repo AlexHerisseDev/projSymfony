@@ -17,3 +17,21 @@
     width: 50%;
     font-size: large;
 }
+
+/* .thumbnail {
+    width: 320px; 
+    height: 240px;
+} */
+
+
+.image img {
+    -moz-transition: all 1s ease; /* Firefox */
+    transition: all 1s ease;
+    width: 100%; 
+    height: 150pt;
+}
+
+.card:hover .thumbnail img {
+    -moz-transform:scale(1.10); /* Firefox */
+     transform:scale(1.10);
+}
