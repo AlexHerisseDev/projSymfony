@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin: Game Management{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center">
+    <a href="{{path('app_adminPage')}}"<button type="button" class="btn btn-outline-danger w-25">Manage users</button></a>
+</div>
+<a href="{{path('app_gameRegister')}}"<button type="button" class="btn btn-success w-25 mb-3">Add a new game</button></a>
+<div class="row">
+    {% for game in games %}
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
+            <div class="card mb-3 containers">
+                <h4 class="card-title text-center">{{game.name}}</h4>
+                <img style="height: auto; max-width: 90%; display: block;" src="{{game.cover}}" class="avatar mx-auto my-3" alt="image avatar">
+                <a href="#" class="btn btn-warning btn-block text-center w-100 cPro">Game Page</a>
+                <a href="#" class="btn btn-danger btn-block text-center w-100 cPro" onclick="return confirm('Are you sure you wish to delete this profile?')">Delete</a>
+            </div>
+        </div>
+{% endfor %}
+    </div>
+
+{% endblock %}

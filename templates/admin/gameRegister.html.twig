@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register a game{% endblock %}
+
+{% block body %}
+    <h1>Register Game</h1>
+
+    {{ form_start(GameRegForm) }}
+        {{ form_row(GameRegForm.name) }}
+        {{ form_row(GameRegForm.cover) }}
+        {{ form_row(GameRegForm.description) }}
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(GameRegForm) }}
+{% endblock %}

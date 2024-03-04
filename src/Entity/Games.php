@@ -30,7 +30,7 @@ class Games
     private $cover;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=65532, nullable=true)
      */
     private $description;
 

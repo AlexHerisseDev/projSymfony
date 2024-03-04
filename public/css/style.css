@@ -5,3 +5,15 @@
 .infoWrapper img{
     width:20%;
 }
+
+.adminBadge{
+    background-color: red;
+    width: 50%;
+    font-size: large;
+}
+
+.userBadge{
+    background-color: green;
+    width: 50%;
+    font-size: large;
+}

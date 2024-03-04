@@ -9,7 +9,7 @@
         </div>
     {% endif %} #}
 
-    <h1>Page d'accueil</h1>
+    <h1 class="text-center">Bienvenue sur Smoke</h1>
     {% if app.user == false%}
         <a href="{{path('app_login')}}"<button type="button" class="btn btn-outline-info">Login</button></a>
         <a href="{{path('app_register')}}"<button type="button" class="btn btn-outline-info">Register</button></a>
@@ -17,7 +17,7 @@
     
     {# <a href="{{path('app_logout')}}"<button type="button">Log Out</button></a> #}
     {% if is_granted("ROLE_ADMIN") %}
-        <a href="#"<button type="button" class="btn btn-outline-warning">Page Admin</button></a>
+        <a href="{{path('app_adminPage')}}"<button type="button" class="btn btn-outline-warning">Page Admin</button></a>
     {% endif %}
     
 {% endblock %}
