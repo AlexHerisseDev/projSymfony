@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProfileController extends AbstractController
 {
@@ -20,6 +22,26 @@ class ProfileController extends AbstractController
             'controller_name' => 'ProfileController',
             'user'=>$user,
             'infos'=>$userInfo,
+        ]);
+    }  
+
+    /**
+     * @Route("/deleteUser/{id}", name="app_delete", methods={"GET","POST"})
+     */
+    public function deleteUser( $id, Request $request, UserRepository $repo, EntityManagerInterface $entityManager): Response
+    {   
+        $user = $repo->find($id);
+        $userInfo = $user->getUserInfo();
+        $entityManager->remove($userInfo);
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        $this->addFlash('notice', 'Successfully deleted');
+
+        return $this->redirectToRoute("home");
+
+        return $this->render('index.html.twig', [
+            'controller_name' => 'AdminPageController',
         ]);
     }
 

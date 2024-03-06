@@ -69,6 +69,24 @@ class GameListController extends AbstractController
         return $this->render('game_list/storePage.html.twig', [
             'controller_name' => 'GameListController',
         ]);
-    }
+    }  
+
+    /**
+     * @Route("/store/game/{id}/remove", name="app_removeGameFromUser")
+     */
+    public function removeGameFromUser($id, GamesRepository $repo, EntityManagerInterface $entityManager): Response
+    {
+        $game = $repo->find($id);
+        $game->removeUser($this->getUser());
+
+        $entityManager->persist($game);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_storePage',  ['id'=>$id]);
+
+        return $this->render('game_list/storePage.html.twig', [
+            'controller_name' => 'GameListController',
+        ]);
+    }  
 
 }

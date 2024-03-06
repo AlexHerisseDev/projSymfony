@@ -80,5 +80,23 @@ class AdminPageController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("admin/games/delete/{id}", name="app_deleteGame", methods={"GET","POST"})
+     */
+    public function deleteGame( $id, Request $request, GamesRepository $repo, EntityManagerInterface $entityManager): Response
+    {   
+        $game = $repo->find($id);
+        $entityManager->remove($game);
+        $entityManager->flush();
+
+        $this->addFlash('notice', 'Successfully deleted');
+
+        return $this->redirectToRoute("app_adminGames");
+
+        return $this->render('admin/games.html.twig', [
+            'controller_name' => 'AdminPageController',
+        ]);
+    }
+
 
 }

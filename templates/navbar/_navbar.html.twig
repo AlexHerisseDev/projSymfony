@@ -11,10 +11,10 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{path("home")}}">Home</a>
                     </li>
-                    <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path("app_store")}}">Store</a>
-                    </li>
                     {% if is_granted("ROLE_USER")%}
+                        <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{path("app_store")}}">Store</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{path("app_library")}}">Library</a>
                         </li>
@@ -29,10 +29,10 @@
                         </li>
                     {% endif %}
                 </ul>
-                <form class="d-flex" role="search">
+                {# <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search Games" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                </form> #}
                 {% if is_granted("ROLE_USER") %}
                     <div class="dropdown">
                         <button class="btn dropdown-toggle border border-grey" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent" >

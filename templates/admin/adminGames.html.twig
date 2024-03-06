@@ -13,8 +13,8 @@
                 <div class="card mb-3 containers">
                     <h4 class="card-title text-center">{{game.name}}</h4>
                     <img style="height: auto; max-width: 90%; display: block;" src="{{game.cover}}" class="mx-auto my-3" alt="image avatar">
-                    <a href="#" class="btn btn-warning btn-block text-center w-100">Game Page</a>
-                    <a href="#" class="btn btn-danger btn-block text-center w-100" onclick="return confirm('Are you sure you wish to delete this game?')">Delete</a>
+                    <a href="{{path('app_storePage', {'id': game.id})}}" class="btn btn-warning btn-block text-center w-100">Game Page</a>
+                    <a href="{{path('app_deleteGame', {'id': game.id})}}" class="btn btn-danger btn-block text-center w-100" onclick="return confirm('Are you sure you wish to delete this game?')">Delete</a>
                 </div>
             </div>
         {% endfor %}
