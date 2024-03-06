@@ -22,4 +22,6 @@ class ProfileController extends AbstractController
             'infos'=>$userInfo,
         ]);
     }
+
+    
 }

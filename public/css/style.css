@@ -18,12 +18,6 @@
     font-size: large;
 }
 
-/* .thumbnail {
-    width: 320px; 
-    height: 240px;
-} */
-
-
 .image img {
     -moz-transition: all 1s ease; /* Firefox */
     transition: all 1s ease;
@@ -34,4 +28,9 @@
 .card:hover .thumbnail img {
     -moz-transform:scale(1.10); /* Firefox */
      transform:scale(1.10);
+}
+
+.storePageCover{
+    width: 70vw;
+    height: 70vh;
 }

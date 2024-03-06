@@ -11,10 +11,12 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{path("home")}}">Home</a>
                     </li>
-
+                    <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{path("app_store")}}">Store</a>
+                    </li>
                     {% if is_granted("ROLE_USER")%}
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{path("app_store")}}">Library</a>
+                            <a class="nav-link active" aria-current="page" href="{{path("app_library")}}">Library</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{path("app_profile", {'id':infos.User.id})}}">{{infos.getUsername}}</a>

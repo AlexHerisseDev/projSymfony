@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Store{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">{{game.name}}</h1>
+    <div class="d-flex flex-column align-items-center">
+        <img c0lass="img-responsive storePageCover" src="{{game.cover}}" alt="{{game.name}} cover">
+        <p> {{game.description}} </p>
+        <div class ="d-inline-flex">
+            {% if game.getUsers().contains(app.user) %}
+                <p>You already own this item.</p>
+                {% else %}
+                    <p>You do not own this item yet. Would you like to add it to your account? &ensp; </p> 
+                    <a href="{{path("app_addGameToUser", {'id':game.id})}}"<button type="button" class="btn btn-success w-20">Add to account</button></a>
+            {% endif %}
+            
+        </div>
+    </div>
+    
+    
+{% endblock %}
