@@ -12,11 +12,14 @@
     <h1 class="text-center">Welcome to Smoke</h1>
     {% if app.user == false%}
         <h2 class="text-center">Please log in or register to access the rest of the site</h2>
-        <a href="{{path('app_login')}}"<button type="button" class="btn btn-outline-info">Login</button></a>
-        <a href="{{path('app_register')}}"<button type="button" class="btn btn-outline-info">Register</button></a>
+        <div class="row d-flex justify-content-center">
+            <a href="{{path('app_login')}}"<button type="button" class="btn btn-outline-info w-25">Login</button></a>
+            <a href="{{path('app_register')}}"<button type="button" class="btn btn-outline-info w-25">Register</button></a>
+            </div>
     {% endif %}
-    {# <h3>Here are some game recommendations for you:</h3>
-    <div class="row">
+
+    <h3 class="my-4">Here are some game recommendations for you:</h3>
+    <div class="row d-flex justify-content-center">
         {% for game in games %}
             <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
                 <a href={{path("app_storePage", {'id':game.id})}} style="text-decoration: none;">
@@ -27,12 +30,16 @@
                                 <img style=" max-width: 90%; display: block;" src="{{game.cover}}" class=" mx-auto my-3" alt="Game cover">  
                             </div>
                         </div>
+                        {% if game in user.getGames() %}
+                            <span class="badge userBadge badge-success">Owned</span>
+                            {% else %}
+                                <span class="badge adminBadge badge-success">Unowned</span>
+                        {% endif %}
                     </div>
                 </a>
             </div>
         {% endfor %}
-    </div> #}
-    
+    </div>
 
     {# <a href="{{path('app_logout')}}"<button type="button">Log Out</button></a> #}
     {% if is_granted("ROLE_ADMIN") %}

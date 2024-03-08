@@ -53,33 +53,15 @@ class SecurityController extends AbstractController
     {   
         // $user = $$userRepo->findOneBy(['email' => 'this->getUser()->getUserIdentifier()']);
         // $games = $user->getGames();
-        // $games= $repo->findAll();
-        // $rNb1 = random_int(0,$repo->count($games));
-        // $rNb2 = -1;
-        // $rNb3 = -1;
-        // while($rNb2 == -1){
-        //     $temp = random_int(0,$repo->count($games));
-        //     if($temp != $rNb1){
-        //         $rNb2 = $temp;
-        //     }
-        // }
-        // $temp = -1;
-        // while($rNb3 == -1){
-        //     $temp = random_int(0,$repo->count($games));
-        //     if(($temp != $rNb1) and ($temp != $rNb2) ){
-        //         $rNb3 = $temp;
-        //     }
-            
-        // }
-
-        // array_push($games2, $games[$rNb1], $games[$rNb2], $games[$rNb3]);
+        $games= $repo->findAll();
+        shuffle($games);
+        $games2 = array_slice($games, 0 ,3);
+        $user = $this->getUser();
 
         return $this->render('accueil/index.html.twig',[
-            // 'games' => $games2,
-
+            'games' => $games2,
+            'user' => $user,
         ]);
-        
-        
     }
 
     /**
@@ -112,15 +94,6 @@ class SecurityController extends AbstractController
      */
     public function update($id, UserRepository $repo, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        /*$user = $repo->find($id);
-        $userInfo = $user->getUserInfo();
-        return $this->render('profile/profile.html.twig', [
-            'controller_name' => 'ProfileController',
-            'user'=>$user,
-            'infos'=>$userInfo,
-        ]);*/
-
-        // $user = $repo->find($id);
         $user = $repo->find($id);
         $userInfo = $user->getUserInfo();
         $form = $this->createForm(UpdateFormType::class);
@@ -148,16 +121,6 @@ class SecurityController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-
-
-            /*$userInfo = new UserInfo();
-            $userInfo->setUser($user)
-                    ->setUsername("username")
-                    ->setAvatar("https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Letter_A.svg/768px-Letter_A.svg.png");
-
-            $entityManager->persist($userInfo);
-            $entityManager->flush();*/
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('home');
         }

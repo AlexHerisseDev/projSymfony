@@ -16,10 +16,11 @@ class GameListController extends AbstractController
     public function store(GamesRepository $repo): Response
     {
         $games = $repo->findall();
-        
+        $user = $this->getUser();
         return $this->render('game_list/store.html.twig', [
             'controller_name' => 'GameListController',
-            'games'=>$games
+            'games'=>$games,
+            'user'=>$user,
         ]);
     }
 
