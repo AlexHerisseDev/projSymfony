@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\UserInfo;
 use App\Form\UpdateFormType;
 use App\Repository\UserRepository;
+use App\Repository\GamesRepository;
 use App\Repository\UserInfoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,9 +49,34 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(AuthenticationUtils $authenticationUtils, UserRepository $repo) : Response
+    public function home(AuthenticationUtils $authenticationUtils, GamesRepository $repo, EntityManagerInterface $entityManager) : Response
     {   
-            return $this->render('accueil/index.html.twig',[
+        // $user = $$userRepo->findOneBy(['email' => 'this->getUser()->getUserIdentifier()']);
+        // $games = $user->getGames();
+        // $games= $repo->findAll();
+        // $rNb1 = random_int(0,$repo->count($games));
+        // $rNb2 = -1;
+        // $rNb3 = -1;
+        // while($rNb2 == -1){
+        //     $temp = random_int(0,$repo->count($games));
+        //     if($temp != $rNb1){
+        //         $rNb2 = $temp;
+        //     }
+        // }
+        // $temp = -1;
+        // while($rNb3 == -1){
+        //     $temp = random_int(0,$repo->count($games));
+        //     if(($temp != $rNb1) and ($temp != $rNb2) ){
+        //         $rNb3 = $temp;
+        //     }
+            
+        // }
+
+        // array_push($games2, $games[$rNb1], $games[$rNb2], $games[$rNb3]);
+
+        return $this->render('accueil/index.html.twig',[
+            // 'games' => $games2,
+
         ]);
         
         
