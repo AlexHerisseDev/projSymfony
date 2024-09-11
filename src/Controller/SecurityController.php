@@ -122,15 +122,5 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/lessons", name="app_lessonList")
-     */
-    public function lessonList(AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager) : Response
-    {   
-        $user = $this->getUser();
-        return $this->render('lessons/lessonList.html.twig',[
-            'user' => $user,
-        ]);
-    }
 }
 

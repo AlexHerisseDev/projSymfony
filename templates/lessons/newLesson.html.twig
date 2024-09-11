@@ -5,11 +5,12 @@
 {% block body %}
     <h1>New Lesson</h1>
 
-    {{ form_start(lessonForm) }}
-        {{ form_row(lessonForm.title) }}
-        {{ form_row(lessonForm.description) }}
-        {{ form_row(lessonForm.availableDates) }}
-        {{ form_row(lessonForm.category) }}
+    {{ form_start(LessonForm) }}
+        {{ form_row(LessonForm.title) }}
+        {{ form_row(LessonForm.description) }}
+        {{ form_row(LessonForm.contactInformation) }}
+        {{ form_row(LessonForm.availableDates) }}
+        {{ form_row(LessonForm.category) }}
         <button type="submit" class="btn">Create the lesson</button>
-    {{ form_end(registrationForm) }}
+    {{ form_end(LessonForm) }}
 {% endblock %}

@@ -17,7 +17,7 @@ class LessonFormType extends AbstractType
             ->add('contactInformation')
             ->add('availableDates')
             ->add('category')
-            ->add('teacher_id')
+            // ->add('teacher_id')
         ;
     }
 

@@ -3,5 +3,13 @@
 {% block title %}List of lessons{% endblock %}
 
 {% block body %}
+    {% if is_granted("ROLE_TEACHER")%}
+            <a href="{{path('app_newLesson')}}"<button type="button" class="btn btn-outline-info w-25">Create a new lesson</button></a>
+    {% endif %}
     <h1>Here is a list of all currently available lessons:</h1>
+    <div class="row">
+        {% for lesson in lessons%}
+            {{lesson.getTitle()}}
+        {% endfor %}
+    </div>
 {% endblock %}
