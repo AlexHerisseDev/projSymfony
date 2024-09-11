@@ -45,13 +45,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $userInfo;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Games::class, mappedBy="users")
+     * @ORM\OneToMany(targetEntity=Lessons::class, mappedBy="teacher_id", orphanRemoval=true)
      */
-    private $games;
+    private $lessons;
 
     public function __construct()
     {
-        $this->games = new ArrayCollection();
+        $this->lessons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,30 +161,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Games>
+     * @return Collection<int, Lessons>
      */
-    public function getGames(): Collection
+    public function getLessons(): Collection
     {
-        return $this->games;
+        return $this->lessons;
     }
 
-    public function addGame(Games $game): self
+    public function addLesson(Lessons $lesson): self
     {
-        if (!$this->games->contains($game)) {
-            $this->games[] = $game;
-            $game->addUser($this);
+        if (!$this->lessons->contains($lesson)) {
+            $this->lessons[] = $lesson;
+            $lesson->setTeacherId($this);
         }
 
         return $this;
     }
 
-    public function removeGame(Games $game): self
+    public function removeLesson(Lessons $lesson): self
     {
-        if ($this->games->removeElement($game)) {
-            $game->removeUser($this);
+        if ($this->lessons->removeElement($lesson)) {
+            // set the owning side to null (unless already changed)
+            if ($lesson->getTeacherId() === $this) {
+                $lesson->setTeacherId(null);
+            }
         }
 
         return $this;
     }
 
+   
 }

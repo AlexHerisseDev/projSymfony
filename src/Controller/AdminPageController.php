@@ -2,10 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Games;
-use App\Form\GameRegFormType;
 use App\Repository\UserRepository;
-use App\Repository\GamesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,57 +43,6 @@ class AdminPageController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/admin/games", name="app_adminGames")
-     */
-    public function adminGames(GamesRepository $repo): Response
-    {
-        $games = $repo->findall();
-        return $this->render('admin/adminGames.html.twig', [
-            'controller_name' => 'AdminPageController',
-            'games'=>$games
-        ]);
-    }
-
-    /**
-     * @Route("/admin/games/Register", name="app_gameRegister")
-     */
-    public function gameRegister(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $game = new Games();
-        $form = $this->createForm(GameRegFormType::class, $game);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $entityManager->persist($game);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_adminGames');
-        }
-
-        return $this->render('admin/gameRegister.html.twig', [
-            'GameRegForm' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("admin/games/delete/{id}", name="app_deleteGame", methods={"GET","POST"})
-     */
-    public function deleteGame( $id, Request $request, GamesRepository $repo, EntityManagerInterface $entityManager): Response
-    {   
-        $game = $repo->find($id);
-        $entityManager->remove($game);
-        $entityManager->flush();
-
-        $this->addFlash('notice', 'Successfully deleted');
-
-        return $this->redirectToRoute("app_adminGames");
-
-        return $this->render('admin/games.html.twig', [
-            'controller_name' => 'AdminPageController',
-        ]);
-    }
 
 
 }

@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Entity\UserInfo;
 use App\Form\UpdateFormType;
 use App\Repository\UserRepository;
-use App\Repository\GamesRepository;
 use App\Repository\UserInfoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +38,6 @@ class SecurityController extends AbstractController
         else{
             $user = $users->getUserIdentifier();
             $infos = $repo->findOneBy(['email'=>$user]);
-            // $ui = $user->getUser();
             return $this->render('navbar/_navbar.html.twig',[
             'infos'=>$infos->getUserInfo(),
         ]);
@@ -49,17 +47,11 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(AuthenticationUtils $authenticationUtils, GamesRepository $repo, EntityManagerInterface $entityManager) : Response
+    public function home(AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager) : Response
     {   
         // $user = $$userRepo->findOneBy(['email' => 'this->getUser()->getUserIdentifier()']);
-        // $games = $user->getGames();
-        $games= $repo->findAll();
-        shuffle($games);
-        $games2 = array_slice($games, 0 ,3);
         $user = $this->getUser();
-
         return $this->render('accueil/index.html.twig',[
-            'games' => $games2,
             'user' => $user,
         ]);
     }
@@ -127,6 +119,17 @@ class SecurityController extends AbstractController
 
         return $this->render('security/update.html.twig', [
             'updateForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/lessons", name="app_lessonList")
+     */
+    public function lessonList(AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager) : Response
+    {   
+        $user = $this->getUser();
+        return $this->render('lessons/lessonList.html.twig',[
+            'user' => $user,
         ]);
     }
 }
