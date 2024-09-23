@@ -4,7 +4,7 @@
 
 {% block body %}
     {% if is_granted("ROLE_TEACHER")%}
-        {# placeholder to modify lesson if owner or admin #}
+        {# ability to modify lesson if owner or admin #}
         {% if currentUser == lesson.getTeacherId() %}
           <h3>You are the owner of this lesson.</h1>
         {% endif %}
