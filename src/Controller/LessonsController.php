@@ -48,4 +48,17 @@ class LessonsController extends AbstractController
             'LessonForm' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/lessons/{id}", name="app_lessonPage")
+     */
+    public function lessonPage($id, LessonsRepository $repo, EntityManagerInterface $entityManager) : Response
+    {
+        $lesson = $repo->find($id);
+        $user = $this->getUser();
+        return $this->render('lessons/lessonPage.html.twig', [
+            'lesson'=>$lesson,
+            'currentUser'=>$user,
+        ]);
+    }
 }
