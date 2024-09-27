@@ -114,6 +114,7 @@ class LessonsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form["title"]->getData() == NULL){
                 $lesson->setTitle($lessonOld->getTitle());
+
             }
             if ($form["description"]->getData() == NULL){
                 $lesson->setDescription($lessonOld->getDescription());
@@ -125,14 +126,17 @@ class LessonsController extends AbstractController
                 $lesson->setAvailableDates($lessonOld->getAvailableDates());
             }
             if ($form["category"]->getData() == NULL){
-                $lesson->setCategory($lessonOld->GetCategory());
+                $lesson->setCategory($lessonOld->getCategory());
             }
+
+            return $this->redirectToRoute('app_lessonList');
         }
-
-
         
-        // TODO: UPDATE LESSON (for admin & tutor currently teaching the lesson)
-        return $this->render('lessons/lessonPage.html.twig', [
+        $entityManager->persist($lesson);
+        $entityManager->flush();
+        
+        return $this->render('lessons/updateLesson.html.twig', [
+            'UpdateLessonForm' => $form->createView(),
             'lesson'=>$lesson,
             'currentUser'=>$user,
         ]);
