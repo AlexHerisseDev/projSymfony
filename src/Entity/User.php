@@ -49,9 +49,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $lessons;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Lessons::class, mappedBy="lessonsStudents")
+     */
+    private $studentsLessons;
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
+        $this->studentsLessons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +191,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($lesson->getTeacherId() === $this) {
                 $lesson->setTeacherId(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lessons>
+     */
+    public function getStudentsLessons(): Collection
+    {
+        return $this->studentsLessons;
+    }
+
+    public function addStudentsLesson(Lessons $studentsLesson): self
+    {
+        if (!$this->studentsLessons->contains($studentsLesson)) {
+            $this->studentsLessons[] = $studentsLesson;
+            $studentsLesson->addLessonsStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudentsLesson(Lessons $studentsLesson): self
+    {
+        if ($this->studentsLessons->removeElement($studentsLesson)) {
+            $studentsLesson->removeLessonsStudent($this);
         }
 
         return $this;

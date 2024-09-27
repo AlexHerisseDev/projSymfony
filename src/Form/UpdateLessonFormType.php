@@ -7,21 +7,29 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class LessonFormType extends AbstractType
+class UpdateLessonFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
+            ->add('title', NULL,[
+                'required'=>false
+            ])
             ->add('description', NULL,[
                 'required'=>false
             ])
-            ->add('contactInformation')
-            ->add('availableDates')
+            ->add('contactInformation', NULL,[
+                'required'=>false
+            ])
+            ->add('availableDates', NULL,[
+                'required'=>false
+            ])
             ->add('category', NULL,[
                 'required'=>false
             ])
+            // ->add('lessonsStudents')
             // ->add('teacher_id')
+
         ;
     }
 

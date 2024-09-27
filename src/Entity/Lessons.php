@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LessonsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +49,16 @@ class Lessons
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="studentsLessons")
+     */
+    private $lessonsStudents;
+
+    public function __construct()
+    {
+        $this->lessonsStudents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,4 +136,30 @@ class Lessons
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLessonsStudents(): Collection
+    {
+        return $this->lessonsStudents;
+    }
+
+    public function addLessonsStudent(User $lessonsStudent): self
+    {
+        if (!$this->lessonsStudents->contains($lessonsStudent)) {
+            $this->lessonsStudents[] = $lessonsStudent;
+        }
+
+        return $this;
+    }
+
+    public function removeLessonsStudent(User $lessonsStudent): self
+    {
+        $this->lessonsStudents->removeElement($lessonsStudent);
+
+        return $this;
+    }
+
+    
 }

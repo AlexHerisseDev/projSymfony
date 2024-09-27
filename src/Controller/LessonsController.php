@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Lessons;
 use App\Entity\UserInfo;
 use App\Form\LessonFormType;
+use App\Form\UpdateLessonFormType;
 use App\Repository\LessonsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,13 +50,88 @@ class LessonsController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/lessons/{id}", name="app_lessonPage")
      */
-    public function lessonPage($id, LessonsRepository $repo, EntityManagerInterface $entityManager) : Response
+    public function lessonPage($id, LessonsRepository $repo) : Response
     {
         $lesson = $repo->find($id);
         $user = $this->getUser();
+        return $this->render('lessons/lessonPage.html.twig', [
+            'lesson'=>$lesson,
+            'currentUser'=>$user,
+        ]);
+    }
+
+    /**
+     * @Route("lessons/{id}/add", name="app_addStudenttoLesson")
+     */
+    public function addStudenttoLesson($id, LessonsRepository $repo, EntityManagerInterface $entityManager) : Response
+    {
+        $lesson = $repo->find($id);
+        $user = $this->getUser();
+        $lesson->addLessonsStudent($user);
+
+        $entityManager->persist($lesson);
+        $entityManager->flush();
+
+        return $this->render('lessons/lessonPage.html.twig', [
+            'lesson'=>$lesson,
+            'currentUser'=>$user,
+        ]);
+    }
+
+    /**
+     * @Route("lessons/{id}/remove", name="app_removeStudentfromLesson")
+     */
+    public function removeStudentfromLesson($id, LessonsRepository $repo, EntityManagerInterface $entityManager) : Response
+    {
+        $lesson = $repo->find($id);
+        $user = $this->getUser();
+        $lesson->removeLessonsStudent($user);
+
+        $entityManager->persist($lesson);
+        $entityManager->flush();
+
+        return $this->render('lessons/lessonPage.html.twig', [
+            'lesson'=>$lesson,
+            'currentUser'=>$user,
+        ]);
+    }
+
+    /**
+     * @Route ("/lessons/{id}/update", name="app_updateLesson")
+     */
+    public function updateLesson($id ,EntityManagerInterface $entityManager, LessonsRepository $repo, Request $request) : Response
+    {
+        $lesson = $lessonOld = $repo->find($id);
+        $user = $this->getUser();
+
+        $form = $this->createForm(UpdateLessonFormType::class, $lesson);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form["title"]->getData() == NULL){
+                $lesson->setTitle($lessonOld->getTitle());
+            }
+            if ($form["description"]->getData() == NULL){
+                $lesson->setDescription($lessonOld->getDescription());
+            }
+            if ($form["contactInformation"]->getData() == NULL){
+                $lesson->setContactInformation($lessonOld->getContactInformation());
+            }
+            if ($form["availableDates"]->getData() == NULL){
+                $lesson->setAvailableDates($lessonOld->getAvailableDates());
+            }
+            if ($form["category"]->getData() == NULL){
+                $lesson->setCategory($lessonOld->GetCategory());
+            }
+        }
+
+
+        
+        // TODO: UPDATE LESSON (for admin & tutor currently teaching the lesson)
         return $this->render('lessons/lessonPage.html.twig', [
             'lesson'=>$lesson,
             'currentUser'=>$user,

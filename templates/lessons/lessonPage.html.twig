@@ -4,7 +4,7 @@
 
 {% block body %}
     {% if is_granted("ROLE_TEACHER")%}
-        {# ability to modify lesson if owner or admin #}
+        {# TODO : ability to modify lesson if owner or admin #}
         {% if currentUser == lesson.getTeacherId() %}
           <h3>You are the owner of this lesson.</h1>
         {% endif %}
@@ -24,6 +24,23 @@
                 <div class="border-bottom border-light pb-2">
                     {{lesson.getAvailableDates()}}
                 </div>
+
+                {% if is_granted("ROLE_ADMIN") %}
+                    <a href="{{path('app_updateLesson', {'id':lesson.getId})}}">
+                        <button type="button" class="btn btn-warning w-20"> Admin(Update Lesson) </button>
+                    </a>
+                {% endif %}
+                {% if lesson.getLessonsStudents().contains(currentUser) %}
+                    <p>You are already a part of this lesson, would you like to cancel it?</p>
+                    <a href="{{path('app_removeStudentfromLesson', {'id':lesson.getId})}}">
+                        <button type="button" class="btn btn-danger w-20"> Remove Lesson </button>
+                    </a>
+                {% else %}
+                    <a href="{{path('app_addStudenttoLesson', {'id': lesson.getId})}}">
+                        <button type="button" class="btn btn-primary w-20"> Accept Lesson </button>
+                    </a>
+            {% endif %}
+                
             </div>
         </div>
     </div>
