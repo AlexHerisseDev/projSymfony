@@ -13,16 +13,16 @@ class UpdateLessonFormType extends AbstractType
     {
         $builder
             ->add('title', NULL,[
-                'required'=>false
+                'required'=>true
             ])
             ->add('description', NULL,[
                 'required'=>false
             ])
             ->add('contactInformation', NULL,[
-                'required'=>false
+                'required'=>true
             ])
             ->add('availableDates', NULL,[
-                'required'=>false
+                'required'=>true
             ])
             ->add('category', NULL,[
                 'required'=>false

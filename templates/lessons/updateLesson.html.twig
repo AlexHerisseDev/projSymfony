@@ -5,11 +5,12 @@
 {% block body %}
     <h1>Lesson Update</h1>
 
+    <span>Fields with a</span> <span class="text-danger"> * </span> <span>are required.</span>
     {{ form_start(UpdateLessonForm) }}
-        {{ form_row(UpdateLessonForm.title) }}
+        {{ form_row(UpdateLessonForm.title) }} <span class="text-danger">*</span>
         {{ form_row(UpdateLessonForm.description) }}
-        {{ form_row(UpdateLessonForm.contactInformation) }}
-        {{ form_row(UpdateLessonForm.availableDates) }}
+        {{ form_row(UpdateLessonForm.contactInformation) }} <span class="text-danger">*</span>
+        {{ form_row(UpdateLessonForm.availableDates) }} <span class="text-danger">*</span>
         {{ form_row(UpdateLessonForm.category) }}
         <button type="submit" class="btn">Update the lesson</button>
     {{ form_end(UpdateLessonForm) }}

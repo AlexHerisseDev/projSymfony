@@ -9,23 +9,23 @@
     <h1>Here is a list of all currently available lessons:</h1>
             {% for lesson in lessons%}
                 <div class="m-3 p-3 border border-primary rounded">
-                    <div class="border-bottom pb-2">
+                    <div class="pb-2">
                         <h4>{{lesson.getTitle()}}</h4>
                     </div>
-                    <div class="p-3 border">
-                        <div class="pb-2">
-                            <span class="badge text-bg-primary">{{lesson.getCategory()}}</span>
-                        </div>
+                    <div class="pb-2">
+                        <span class="badge text-bg-primary">{{lesson.getCategory()}}</span>
+                    </div>
+                    <div class ="p-2">
                         <div class="border-bottom pb-2">
                             {{lesson.getDescription()}}
                         </div>
                         <div class="border-bottom pb-2">
                             {{lesson.getAvailableDates()}}
                         </div>
-                    </div>
+                    </div>  
                     <a href="{{path('app_lessonPage', {'id': lesson.getId})}}">
                         <button type="button" class="btn btn-primary">View Lesson</button>
-                        {# TODO: AJOUTER MODALE POTENTIELLEMENT #}
+                        {# TODOv : AJOUTER MODALE POTENTIELLEMENT #}
                     </a>
                 </div>
             {% endfor %}

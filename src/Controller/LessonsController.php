@@ -114,7 +114,6 @@ class LessonsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($form["title"]->getData() == NULL){
                 $lesson->setTitle($lessonOld->getTitle());
-
             }
             if ($form["description"]->getData() == NULL){
                 $lesson->setDescription($lessonOld->getDescription());
@@ -129,11 +128,10 @@ class LessonsController extends AbstractController
                 $lesson->setCategory($lessonOld->getCategory());
             }
 
+            $entityManager->persist($lesson);
+            $entityManager->flush();
             return $this->redirectToRoute('app_lessonList');
         }
-        
-        $entityManager->persist($lesson);
-        $entityManager->flush();
         
         return $this->render('lessons/updateLesson.html.twig', [
             'UpdateLessonForm' => $form->createView(),
