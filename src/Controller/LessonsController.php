@@ -30,6 +30,24 @@ class LessonsController extends AbstractController
     }
 
     /**
+     * @Route("/lessons/{id}", name="app_lessonsPaginated")
+     */
+    public function lessonListPaginated($id, LessonsRepository $repo): Response
+    {
+        $lessons = $repo->findall();
+        $nbLessons = count($lessons);
+        $nbPages=(int) ($nbLessons/10);
+
+        return $this->render('lessons/lessonListPaginated.html.twig', [
+            'lessons'=>$lessons,
+            'page'=>$id,
+            'nbLessons'=>$nbLessons,
+            'nbPages'=>$nbPages,
+        ]);
+    }
+
+
+    /**
      * @Route("/lessons/new", name="app_newLesson")
      */
     public function newLesson(Request $request, EntityManagerInterface $entityManager) : Response
@@ -53,7 +71,7 @@ class LessonsController extends AbstractController
 
 
     /**
-     * @Route("/lessons/{id}", name="app_lessonPage")
+     * @Route("/lesson/lesson/{id}", name="app_lessonPage")
      */
     public function lessonPage($id, LessonsRepository $repo) : Response
     {
@@ -66,7 +84,7 @@ class LessonsController extends AbstractController
     }
 
     /**
-     * @Route("lessons/{id}/add", name="app_addStudenttoLesson")
+     * @Route("lessons/lesson/{id}/add", name="app_addStudenttoLesson")
      */
     public function addStudenttoLesson($id, LessonsRepository $repo, EntityManagerInterface $entityManager) : Response
     {
@@ -84,7 +102,7 @@ class LessonsController extends AbstractController
     }
 
     /**
-     * @Route("lessons/{id}/remove", name="app_removeStudentfromLesson")
+     * @Route("lessons/lesson/{id}/remove", name="app_removeStudentfromLesson")
      */
     public function removeStudentfromLesson($id, LessonsRepository $repo, EntityManagerInterface $entityManager) : Response
     {
@@ -102,7 +120,7 @@ class LessonsController extends AbstractController
     }
 
     /**
-     * @Route ("/lessons/{id}/update", name="app_updateLesson")
+     * @Route ("/lessons/lesson/{id}/update", name="app_updateLesson")
      */
     public function updateLesson($id ,EntityManagerInterface $entityManager, LessonsRepository $repo, Request $request) : Response
     {

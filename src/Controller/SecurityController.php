@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\UserInfo;
 use App\Form\UpdateFormType;
+use App\Repository\LessonsRepository;
 use App\Repository\UserRepository;
 use App\Repository\UserInfoRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -47,12 +48,16 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager) : Response
+    public function home(AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager, LessonsRepository $lessonsRepo) : Response
     {   
         // $user = $$userRepo->findOneBy(['email' => 'this->getUser()->getUserIdentifier()']);
         $user = $this->getUser();
+        $lessons = $lessonsRepo->findall();
+        $nbLessons = count($lessons);
+
         return $this->render('accueil/index.html.twig',[
             'user' => $user,
+            'nbLessons' => $nbLessons,
         ]);
     }
 

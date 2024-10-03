@@ -22,10 +22,12 @@
         {% if user.getUserInfo.getUsername == "username" %}
             <h4 class="text-center">Please feel free to change your username and avatar by going to your profile in the dropdown menu located in the top-right of your screen</h2>
         {% endif %}
+        <span>Feel free to go the lesson list at the top of the page to browse our {{nbLessons}} available lessons</span>
+        {# TODO: Replace number with actual amount of lessons #}
     {% endif %}
 
     {% if is_granted("ROLE_TEACHER")%}
-        <h1>BIG TEST BIG WIN</h1>
+        <h1>YOU ARE A TEACHER</h1>
     {% endif %}
 
     {% if is_granted("ROLE_ADMIN") %}

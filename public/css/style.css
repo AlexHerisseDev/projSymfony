@@ -29,8 +29,3 @@
     -moz-transform:scale(1.10); /* Firefox */
      transform:scale(1.10);
 }
-
-.storePageCover{
-    width: 70vw;
-    height: 70vh;
-}
