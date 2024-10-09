@@ -4,25 +4,26 @@
 
 {% block body %}
 
-<div class="row">
-    {% for user in users %}
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
-            <div class="card mb-3 containers">
-                <h4 class="card-title text-center">{{user.getUserInfo().username}}</h4>
-                <img style="height: auto; max-width: 200px; display: block;" src="{{user.userInfo.avatar}}" class="avatar mx-auto my-3" alt="image avatar">
-                <p class="text-center">{{user.email}}</p>
+    <div class="row">
+        {% for user in users %}
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
+                <div class="card mb-3 containers">
+                    <h4 class="card-title text-center">{{user.getUserInfo().username}}</h4>
+                    <img style="height: auto; max-width: 200px; display: block;" src="{{user.userInfo.avatar}}" class="avatar mx-auto my-3" alt="image avatar">
+                    <p class="text-center">{{user.email}}</p>
 
-                {% if "ROLE_ADMIN" in user.roles %}
-                    <span class="badge adminBadge badge-success">Admin</span>
-                    {% else %}
-                        <span class="badge userBadge badge-success">User</span>
-                {% endif %}
+                    {% if "ROLE_ADMIN" in user.roles %}
+                        <span class="badge adminBadge badge-success">Admin</span>
+                        {% else %}
+                            <span class="badge userBadge badge-success">User</span>
+                    {% endif %}
 
-                <a href="{{path('app_profile', {'id': user.id})}}" class="btn btn-warning btn-block text-center w-100 cPro">Profile</a>
-                <a href="{{path('app_delete', {'id': user.id})}}" class="btn btn-danger btn-block text-center w-100 cPro" onclick="return confirm('Are you sure you wish to delete this profile?')">Delete</a>
+                    <a href="{{path('app_profile', {'id': user.id})}}" class="btn btn-warning btn-block text-center w-100 cPro">Profile</a>
+                    <a href="{{path('app_delete', {'id': user.id})}}" class="btn btn-danger btn-block text-center w-100 cPro" onclick="return confirm('Are you sure you wish to delete this profile?')">Delete</a>
+                {# TODO: add a button to make user into a teacher, so it'll add the ROLE_TEACHER to their role (setrole += ROLE_TEACHER basically?)#}
+                </div>
             </div>
-        </div>
-{% endfor %}
+        {% endfor %}
     </div>
-
+    
 {% endblock %}

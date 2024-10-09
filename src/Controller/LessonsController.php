@@ -46,6 +46,15 @@ class LessonsController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/lessons/category/{id}", name="app_lessonCategory")
+     */
+    public function lessonCategory($id, LessonsRepository $repo): Response{
+        $lessons = $repo->findBy(['category' => $id]);
+
+        return $this->render('lessons/lessonListPaginated.html.twig');
+    }
+
 
     /**
      * @Route("/lessons/new", name="app_newLesson")
@@ -130,21 +139,21 @@ class LessonsController extends AbstractController
         $form = $this->createForm(UpdateLessonFormType::class, $lesson);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form["title"]->getData() == NULL){
-                $lesson->setTitle($lessonOld->getTitle());
-            }
-            if ($form["description"]->getData() == NULL){
-                $lesson->setDescription($lessonOld->getDescription());
-            }
-            if ($form["contactInformation"]->getData() == NULL){
-                $lesson->setContactInformation($lessonOld->getContactInformation());
-            }
-            if ($form["availableDates"]->getData() == NULL){
-                $lesson->setAvailableDates($lessonOld->getAvailableDates());
-            }
-            if ($form["category"]->getData() == NULL){
-                $lesson->setCategory($lessonOld->getCategory());
-            }
+            // if ($form["title"]->getData() == NULL){
+            //     $lesson->setTitle($lessonOld->getTitle());
+            // }
+            // if ($form["description"]->getData() == NULL){
+            //     $lesson->setDescription($lessonOld->getDescription());
+            // }
+            // if ($form["contactInformation"]->getData() == NULL){
+            //     $lesson->setContactInformation($lessonOld->getContactInformation());
+            // }
+            // if ($form["availableDates"]->getData() == NULL){
+            //     $lesson->setAvailableDates($lessonOld->getAvailableDates());
+            // }
+            // if ($form["category"]->getData() == NULL){
+            //     $lesson->setCategory($lessonOld->getCategory());
+            // }
 
             $entityManager->persist($lesson);
             $entityManager->flush();

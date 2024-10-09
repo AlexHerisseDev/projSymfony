@@ -3,7 +3,8 @@
 }
 
 .infoWrapper img{
-    width:20%;
+    width:100px;
+    height:100px;
 }
 
 .adminBadge{
@@ -28,4 +29,10 @@
 .card:hover .thumbnail img {
     -moz-transform:scale(1.10); /* Firefox */
      transform:scale(1.10);
+}
+
+.lessonCard{
+    width:80vw;
+    height:100px;
+    overflow:hidden;
 }

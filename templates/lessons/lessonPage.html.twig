@@ -26,13 +26,13 @@
                     <span>Available dates: {{lesson.getAvailableDates()}}</span>
                 </div>
 
-                {% if is_granted("ROLE_ADMIN") %}
+                {% (if is_granted("ROLE_ADMIN")) or (currentUser == lesson.getTeacherId()) %}
                     <a href="{{path('app_updateLesson', {'id':lesson.getId})}}">
                         <button type="button" class="btn btn-warning w-20"> Update/Modify Lesson </button>
                     </a>
                 {% endif %}
                 {% if lesson.getLessonsStudents().contains(currentUser) %}
-                    <p>You are already a part of this lesson, would you like to no longer participate?</p>
+                    <p>You are already a part of this lesson, would you like to remove your participation?</p>
                     <a href="{{path('app_removeStudentfromLesson', {'id':lesson.getId})}}">
                         <button type="button" class="btn btn-danger w-20"> Remove Lesson </button>
                     </a>
