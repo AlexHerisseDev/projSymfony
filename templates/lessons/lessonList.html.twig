@@ -23,25 +23,7 @@
         </li>
     </ul>
     <h1>Here is a list of all currently available lessons:</h1>
-    {% for lesson in lessons%}
-        <div class="m-3 p-3 border border-primary rounded lessonCard">
-            <div class="pb-2">
-                <h4>{{lesson.getTitle()}}</h4>
-            </div>
-            <a href="">
-                <div class="pb-2">
-                    <span class="badge text-bg-primary">{{lesson.getCategory()}}</span>
-                </div>
-            </a>
-            <div class ="p-2">
-                <div class="border-bottom pb-2">
-                    {{lesson.getAvailableDates()}}
-                </div>
-            </div>  
-            <a href="{{path('app_lessonPage', {'id': lesson.getId})}}">
-                <button type="button" class="btn btn-primary">View Lesson</button>
-                {# TODO : AJOUTER MODALE POTENTIELLEMENT #}
-            </a>
-        </div>
+    {% for lesson in lessons %}
+        {{include('lessonCard/_lessonCard.html.twig', {lesson:lesson})}}
     {% endfor %}
 {% endblock %}

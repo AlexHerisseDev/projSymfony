@@ -26,7 +26,7 @@
                     <span>Available dates: {{lesson.getAvailableDates()}}</span>
                 </div>
 
-                {% (if is_granted("ROLE_ADMIN")) or (currentUser == lesson.getTeacherId()) %}
+                {% if is_granted("ROLE_ADMIN") or (currentUser == lesson.getTeacherId()) %}
                     <a href="{{path('app_updateLesson', {'id':lesson.getId})}}">
                         <button type="button" class="btn btn-warning w-20"> Update/Modify Lesson </button>
                     </a>

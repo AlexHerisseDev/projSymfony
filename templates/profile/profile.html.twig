@@ -13,26 +13,35 @@
     {% endif %}
 
     {% if is_granted("ROLE_TEACHER") %}
-    <p class="mt-3">Here are the lessons you are currently running, press the "View Lesson" button to edit a lesson.</p>
-        {% for lesson in user.getLessons()%}
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h4 class="card-title">{{lesson.getTitle()}}</h5>
-                    <p class="card-text"> {{lesson.getDescription()}}</p>
-                    <p class="card-text"> {{lesson.getAvailableDates()}}</p>
-                    <a href="{{path('app_lessonPage', {'id': lesson.getId})}}">
-                        <button type="button" class="btn btn-primary">View Lesson</button>
-                    </a>
+        <p class="mt-3">Here are the lessons you are currently running, press the "View Lesson" button to edit a lesson.</p>
+            {% for lesson in user.getLessons()%}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{lesson.getTitle()}}</h5>
+                        <a href="{{path('app_profile', {'id': lesson.getTeacherId.getId})}}">
+                            <p class="card-text">{{lesson.getTeacherId().getUserInfo().getUsername()}}</p>
+                        </a>
+                        <p class="card-text"> {{lesson.getDescription()}}</p>
+                        <p class="card-text"> {{lesson.getAvailableDates()}}</p>
+                        <a href="{{path('app_lessonPage', {'id': lesson.getId})}}">
+                            <button type="button" class="btn btn-warning">View Lesson</button>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
     {% endif %}
-
-    <p class="mt-3">Here are the lessons you are currently participating in: </p>
+    {% if user.id == app.user.id %}
+        <p class="mt-3">Here are the lessons you are currently participating in: </p>
+        {% else %}
+            <p class="mt-3">Here are the lessons this user is currently participating in: </p
+    {% endif %}
     {% for studentLesson in user.getStudentsLessons %}
         <div class="card" style="width: 18rem;">
                 <div class="card-body">
                 <h4 class="card-title">{{studentLesson.getTitle()}}</h5>
+                <a href="{{path('app_profile', {'id': studentLesson.getTeacherId.getId})}}">
+                    <p class="card-text">{{studentLesson.getTeacherId().getUserInfo().getUsername()}}</p>
+                </a>
                 <p class="card-text"> {{studentLesson.getDescription()}}</p>
                 <p class="card-text"> {{studentLesson.getAvailableDates()}}</p>
                 <a href="{{path('app_lessonPage', {'id': studentLesson.getId})}}">

@@ -140,21 +140,6 @@ class LessonsController extends AbstractController
         $form = $this->createForm(UpdateLessonFormType::class, $lesson);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // if ($form["title"]->getData() == NULL){
-            //     $lesson->setTitle($lessonOld->getTitle());
-            // }
-            // if ($form["description"]->getData() == NULL){
-            //     $lesson->setDescription($lessonOld->getDescription());
-            // }
-            // if ($form["contactInformation"]->getData() == NULL){
-            //     $lesson->setContactInformation($lessonOld->getContactInformation());
-            // }
-            // if ($form["availableDates"]->getData() == NULL){
-            //     $lesson->setAvailableDates($lessonOld->getAvailableDates());
-            // }
-            // if ($form["category"]->getData() == NULL){
-            //     $lesson->setCategory($lessonOld->getCategory());
-            // }
 
             $entityManager->persist($lesson);
             $entityManager->flush();
@@ -165,6 +150,15 @@ class LessonsController extends AbstractController
             'UpdateLessonForm' => $form->createView(),
             'lesson'=>$lesson,
             'currentUser'=>$user,
+        ]);
+    }
+
+    public function lessonCard(LessonsRepository $repo)
+    {
+        $lessons = $repo->findall();
+
+        return $this->render('lessonCard/_lessonCard.html.twig', [
+            'lessons'=>$lessons,
         ]);
     }
 }

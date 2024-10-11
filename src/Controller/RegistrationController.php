@@ -40,7 +40,7 @@ class RegistrationController extends AbstractController
             $userInfo = new UserInfo();
             $userInfo->setUser($user)
                     ->setUsername("username")
-                    ->setAvatar("https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Letter_A.svg/768px-Letter_A.svg.png");
+                    ->setAvatar("https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png");
 
             $entityManager->persist($userInfo);
             $entityManager->flush();
