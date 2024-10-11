@@ -30,19 +30,20 @@ class LessonsController extends AbstractController
     }
 
     /**
-     * @Route("/lessons/{id}", name="app_lessonsPaginated")
+     * @Route("/lessons/{displayPerPage}/{page}", name="app_lessonsPaginated")
      */
-    public function lessonListPaginated($id, LessonsRepository $repo): Response
+    public function lessonListPaginated($displayPerPage, $page, LessonsRepository $repo): Response
     {
         $lessons = $repo->findall();
         $nbLessons = count($lessons);
-        $nbPages=(int) ($nbLessons/10);
+        $nbPages=(int) ($nbLessons/$displayPerPage);
 
         return $this->render('lessons/lessonListPaginated.html.twig', [
             'lessons'=>$lessons,
-            'page'=>$id,
+            'page'=>$page,
             'nbLessons'=>$nbLessons,
             'nbPages'=>$nbPages,
+            'currentDisplayPerPage'=>$displayPerPage
         ]);
     }
 
