@@ -22,7 +22,7 @@
         {% if user.getUserInfo.getUsername == "username" %}
             <h4 class="text-center">Please feel free to change your username and avatar by going to your profile in the dropdown menu located in the top-right of your screen</h2>
         {% endif %}
-        <p>Feel free to go the lesson list at the top of the page to browse our {{nbLessons}} currently available lessons</p>
+        <p class="m-2">Feel free to go the lesson list at the top of the page to browse our {{nbLessons}} currently available lessons.</p>
     {% endif %}
 
     {% if is_granted("ROLE_TEACHER")%}

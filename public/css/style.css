@@ -1,7 +1,9 @@
-html{
-    background-color: #e5e5f7 !important;
-    opacity: 0.8;
-    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 10px ), repeating-linear-gradient( #52ebbb55, #52ebbb );
+.nav-item{
+    border-bottom: solid transparent;
+}
+
+.nav-item:hover{
+    border-bottom: solid rgb(139, 139, 218);
 }
 
 .avatar{
@@ -39,6 +41,8 @@ html{
 
 .lessonCard{
     width:95vw;
-    height:220px;
-    overflow:hidden;
+    height:275px;
+    overflow: hidden;
+    border: solid rgb(139, 139, 218) 1px;
+    border-radius: 10px;
 }

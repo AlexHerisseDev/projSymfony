@@ -27,8 +27,9 @@ class UpdateLessonFormType extends AbstractType
             ->add('category', NULL,[
                 'required'=>false
             ])
-            // ->add('lessonsStudents')
-            // ->add('teacher_id')
+            ->add('location', NULL,[
+                'required'=>false
+            ])
 
         ;
     }

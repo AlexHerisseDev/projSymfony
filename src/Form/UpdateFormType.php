@@ -22,6 +22,7 @@ class UpdateFormType extends AbstractType
             ->add('password', null, ['required' => false])
             ->add('avatar', null, ['required' => false, 'mapped' => false])
             ->add('username', null, ['required' => false, 'mapped' => false])
+            ->add('description', null, ['required' => false, 'mapped' => false])
         ;
     }
 

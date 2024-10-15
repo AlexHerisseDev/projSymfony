@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <div class="m-3 p-3 border border-primary rounded lessonCard">
+    <div class="m-3 p-3 lessonCard">
         <div class="pb-2">
             <h4>{{lesson.getTitle()}}</h4>
         </div>
-        <a href="">
-            <div class="pb-2">
+        <div class="pb-2">
+            <a href="">
                 <span class="badge text-bg-primary">{{lesson.getCategory()}}</span>
-            </div>
-        </a>
+            </a>
+        </div>
+
         <a href="{{path('app_profile', {'id': lesson.getTeacherId.getId})}}">
-            <p class="card-text">{{lesson.getTeacherId().getUserInfo().getUsername()}}</p>
+            <span class="card-text">{{lesson.getTeacherId().getUserInfo().getUsername()}}</span>
         </a>
         <div class ="p-2">
-            <div class="border-bottom pb-2">
-                {{lesson.getAvailableDates()}}
-            </div>
+            {% if lesson.getAvailableDates is not null %}
+                <div class=" pb-2">
+                    <span>{{lesson.getAvailableDates()}}</span>
+                </div>
+                {% else %}
+                <div class=" pb-2">
+                    <span>No specific date information was provided.</span>
+                </div>  
+            {% endif %}
+            {% if lesson.getLocation is not null %}
+                <div class=" pb-2">
+                    <span>{{lesson.getLocation()}}</span>
+                </div>
+                {% else %}
+                <div class="pb-2">
+                    <span>No specific location information was provided.</span>
+                </div>  
+            {% endif %}
+            
         </div>  
-        <a href="{{path('app_lessonPage', {'id': lesson.getId})}}">
-            <button type="button" class="btn btn-primary">View Lesson</button>
-            {# TODO : AJOUTER MODALE POTENTIELLEMENT #}
-        </a>
+        <div class="pt-3">
+            <a href="{{path('app_lessonPage', {'id': lesson.getId})}}">
+                <button type="button" class="btn btn-primary">View Lesson</button>
+            </a>
+        </div>
+
     </div>
 </html>

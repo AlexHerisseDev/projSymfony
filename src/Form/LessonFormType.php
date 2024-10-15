@@ -21,7 +21,9 @@ class LessonFormType extends AbstractType
             ->add('category', NULL,[
                 'required'=>false
             ])
-            // ->add('teacher_id')
+            ->add('location', NULL,[
+                'required'=>false
+            ])
         ;
     }
 

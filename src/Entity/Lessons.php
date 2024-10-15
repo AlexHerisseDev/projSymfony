@@ -55,6 +55,11 @@ class Lessons
      */
     private $lessonsStudents;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $location;
+
     public function __construct()
     {
         $this->lessonsStudents = new ArrayCollection();
@@ -157,6 +162,18 @@ class Lessons
     public function removeLessonsStudent(User $lessonsStudent): self
     {
         $this->lessonsStudents->removeElement($lessonsStudent);
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

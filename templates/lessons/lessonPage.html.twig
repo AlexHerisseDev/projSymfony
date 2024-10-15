@@ -6,14 +6,14 @@
 
     {% if is_granted("ROLE_TEACHER")%}
         {% if currentUser == lesson.getTeacherId() %}
-          <h3>You are the owner of this lesson.</h1>
+          <h3>You are the owner of this lesson.</h3>
         {% endif %}
     {% endif %}
 
     <div class="row d-flex justify-content-center">
         <div class="w-75 p-3">
             <div class="border-bottom pb-2">
-                {{lesson.getTitle()}}
+                <h1>{{lesson.getTitle()}}</h1>
             </div>
             <div class="p-3 border">
                 <div class="pb-2">
@@ -32,7 +32,7 @@
                     </a>
                 {% endif %}
                 {% if lesson.getLessonsStudents().contains(currentUser) %}
-                    <p>You are already a part of this lesson, would you like to remove your participation?</p>
+                    <p class="pt-3">You are already a part of this lesson, would you like to remove your participation?</p>
                     <a href="{{path('app_removeStudentfromLesson', {'id':lesson.getId})}}">
                         <button type="button" class="btn btn-danger w-20"> Remove Lesson </button>
                     </a>
