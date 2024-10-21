@@ -12,7 +12,7 @@
 
     {% if app.user == false%}
         <div class="guest-index">
-            <h2 class="text-center">TutorShip is a new way to easily get in contact with Tutors all around the world in order to learn new skills and sharpen your existing ones. </h2>
+            <h2 class="text-center">TutorShip is a new way to easily get in contact with Tutors all around the world in order to learn new skills and sharpen your existing ones.</h2>
             <div class="guest-loginreg-container">
                 <span class="guest-loginreg">Please</span>
                 <a href="{{path("app_login")}}">
@@ -33,7 +33,7 @@
         {% if user.getUserInfo.getUsername == "username" %}
             <h4 class="text-center">Please feel free to change your username and avatar by going to your profile in the dropdown menu located in the top-right of your screen</h2>
         {% endif %}
-        <p class="m-2 indexText">Feel free to browser the list of lessons accesible at the top of your screen to browse our {{nbLessons}} currently available lessons.</p>
+        <p class="m-2 indexText">Feel free to browser the list of lessSDons accesible at the top of your screen to browse our {{nbLessons}} currently available lessons.</p>
     {% endif %}
 
     {% if is_granted("ROLE_TEACHER")%}

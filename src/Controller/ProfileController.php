@@ -41,7 +41,6 @@ class ProfileController extends AbstractController
         return $this->redirectToRoute("home");
 
         return $this->render('index.html.twig', [
-            'controller_name' => 'AdminPageController',
         ]);
     }
 

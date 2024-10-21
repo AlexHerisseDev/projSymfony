@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
                     new Assert\NotBlank([
                         'message' => 'This field can not be blank'
                     ])
-],
+                ],
             ])
 
             ->add('agreeTerms', CheckboxType::class, [
@@ -41,8 +41,6 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
 
-            // ...
-            
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
@@ -60,8 +58,7 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 255,
                     ]),
                 ],
             ])

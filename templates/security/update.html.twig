@@ -3,23 +3,36 @@
 {% block title %}Update{% endblock %}
 
 {% block body %}
-    <h1>Update</h1>
-    <h3>(Leave a field empty to not update it)</h3>
-    {{ form_start(updateForm) }}
-        {{ form_row(updateForm.email) }}
-        {{ form_row(updateForm.password, {
-            label: 'Password',
-        }) }}
-        {{ form_row(updateForm.avatar, {
-            label: 'Avatar URL',
-        }) }}
-        {{ form_row(updateForm.username, {
-            label: "Username",
-        }) }}
-        {{ form_row(updateForm.description, {
-            label: "Description",
-        }) }}
+    <div class="bg-container">
+        <h1>Update</h1>
+        <h3>(Leave a field empty to not update it)</h3>
+        <div class="form-control">
+            {{ form_start(updateForm) }}
+                <div class="form-ctrl">
+                    {{ form_label(updateForm.email) }}
+                    {{ form_widget(updateForm.email, {'attr': {'class': 'logRegInputBar'}}) }}
+                </div>
+                <div class="form-ctrl">
+                    {{ form_label(updateForm.password) }}
+                    {{ form_widget(updateForm.password, {'attr': {'class': 'logRegInputBar'}}) }}
+                </div>
+                <div class="form-ctrl">
+                    {{ form_label(updateForm.avatar) }}
+                    {{ form_widget(updateForm.avatar, {'attr': {'class': 'logRegInputBar'}}) }}
+                </div>
+                <div class="form-ctrl">
+                    {{ form_label(updateForm.username) }}
+                    {{ form_widget(updateForm.username, {'attr': {'class': 'logRegInputBar'}}) }}
+                </div>
+                <div class="form-ctrl">
+                    {{ form_label(updateForm.description) }}
+                    {{ form_widget(updateForm.description, {'attr': {'class': 'logRegInputBar'}}) }}
+                </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(updateForm) }}
+                <button class="btn btn-primary" type="submit">
+                        Update
+                </button>
+            {{ form_end(updateForm) }}
+        </div>
+    </div>
 {% endblock %}

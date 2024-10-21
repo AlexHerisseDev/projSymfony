@@ -18,11 +18,26 @@ class UpdateFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', null, ['required' => false])
-            ->add('password', null, ['required' => false])
-            ->add('avatar', null, ['required' => false, 'mapped' => false])
-            ->add('username', null, ['required' => false, 'mapped' => false])
-            ->add('description', null, ['required' => false, 'mapped' => false])
+            ->add('email',
+             null, 
+             ['required' => false],
+             ['label' => 'Email'])
+            ->add('password', 
+            null, 
+            ['required' => false],
+            ['label' => 'Email'])
+            ->add('avatar', 
+            null, 
+            ['label' => 'Avatar URL'],
+            ['required' => false, 'mapped' => false])
+            ->add('username', 
+            null, 
+            ['label' => 'Username'],
+            ['required' => false, 'mapped' => false])
+            ->add('description', 
+            null, 
+            ['label' => 'Description'],
+            ['required' => false, 'mapped' => false])
         ;
     }
 

@@ -179,7 +179,7 @@ a{
     margin-bottom: 5px;
 }
 
-.foo{
+.loginRow{
     display:flex;
     flex-direction: column;
 }

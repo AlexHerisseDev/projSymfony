@@ -17,12 +17,7 @@
                 {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'logRegInputBar'}}) }}
                 {{ form_label(registrationForm.plainPassword.second) }}
                 {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'logRegInputBar'}}) }}
-                {# {{ form_row(registrationForm.plainPassword, {
-                    label: 'Password',
-                }) }} #}
-
                 {{ form_row(registrationForm.agreeTerms) }}
-                
             {{ form_widget(registrationForm) }}
                 <button class="btn btn-primary" type="submit">
                     Register

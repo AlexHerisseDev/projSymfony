@@ -54,7 +54,6 @@ class SecurityController extends AbstractController
      */
     public function home(AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager, LessonsRepository $lessonsRepo) : Response
     {   
-        // $user = $$userRepo->findOneBy(['email' => 'this->getUser()->getUserIdentifier()']);
         $user = $this->getUser();
         $lessons = $lessonsRepo->findall();
         $nbLessons = count($lessons);
