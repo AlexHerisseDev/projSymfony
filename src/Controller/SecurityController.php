@@ -45,6 +45,10 @@ class SecurityController extends AbstractController
         }
     }
 
+    public function footer(){
+            return $this->render('navbar/_footer.html.twig');
+    }
+
     /**
      * @Route("/", name="home")
      */

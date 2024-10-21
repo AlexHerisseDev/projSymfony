@@ -20,27 +20,27 @@
                     <span class="badge text-bg-primary">{{lesson.getCategory()}}</span>
                 </div>
                 <div class="pb-2">
-                    <span>Description: </span>
+                    <p class="lessonPageGuides">Description: </p>
                     {% if lesson.getDescription is not null %}
                         {{lesson.getDescription()}}
                         {% else %}
-                            <span>No description was provided.</span>
+                            <p>No description was provided.</p>
                     {% endif %}
                 </div>
                 <div class="pb-2">
-                    <span>Available dates: </span> 
+                    <p class="lessonPageGuides">Available dates: </p> 
                     {% if lesson.getAvailableDates is not null %}
                         {{lesson.getAvailableDates()}}
                         {% else %}
-                            <span>No specific date information was provided.</span>
+                            <p>No specific date information was provided.</p>
                     {% endif %}
                 </div>
                 <div class="pb-2">
-                    <span>Contact information: </span> 
+                    <p class="lessonPageGuides">Contact information: </p> 
                     {% if lesson.getContactInformation is not null %}
                         {{lesson.getContactInformation()}}
                         {% else %}
-                            <span>No specific contact information was provided.</span>
+                            <p>No specific contact information was provided.</p>
                     {% endif %}
                 </div>
 
@@ -49,16 +49,20 @@
                         <button type="button" class="btn btn-warning w-20"> Update/Modify Lesson </button>
                     </a>
                 {% endif %}
-                {% if lesson.getLessonsStudents().contains(currentUser) %}
-                    <p class="pt-3">You have already pinned this lesson, would you like to unpin it?</p>
-                    <a href="{{path('app_removeStudentfromLesson', {'id':lesson.getId})}}">
-                        <button type="button" class="btn btn-danger w-20"> Unpin Lesson </button>
-                    </a>
-                {% else %}
-                    <a href="{{path('app_addStudenttoLesson', {'id': lesson.getId})}}">
-                        <button type="button" class="btn btn-primary w-20"> Pin Lesson </button>
-                    </a>
-            {% endif %}
+
+                <div class="lessonPin">
+                    {% if lesson.getLessonsStudents().contains(currentUser) %}
+                        <p class="pt-3">You have already pinned this lesson, would you like to unpin it?</p>
+                        <a href="{{path('app_removeStudentfromLesson', {'id':lesson.getId})}}">
+                            <button type="button" class="btn btn-danger w-20"> Unpin Lesson </button>
+                        </a>
+                    {% else %}
+                        <a href="{{path('app_addStudenttoLesson', {'id': lesson.getId})}}">
+                            <button type="button" class="btn btn-primary w-20"> Pin Lesson </button>
+                        </a>
+                    {% endif %}
+                </div>
+                
             </div>
         </div>
     </div>
