@@ -14,7 +14,10 @@
             label: 'Avatar URL',
         }) }}
         {{ form_row(updateForm.username, {
-            label: "Nom d'utilisateur",
+            label: "Username",
+        }) }}
+        {{ form_row(updateForm.description, {
+            label: "Description",
         }) }}
 
         <button type="submit" class="btn">Register</button>

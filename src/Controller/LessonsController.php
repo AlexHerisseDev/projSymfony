@@ -47,15 +47,6 @@ class LessonsController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/lessons/category/{id}", name="app_lessonCategory")
-     */
-    public function lessonCategory($id, LessonsRepository $repo): Response{
-        $lessons = $repo->findBy(['category' => $id]);
-
-        return $this->render('lessons/lessonListPaginated.html.twig');
-    }
-
 
     /**
      * @Route("/lessons/new", name="app_newLesson")
@@ -130,7 +121,7 @@ class LessonsController extends AbstractController
     }
 
     /**
-     * @Route ("/lessons/lesson/{id}/update", name="app_updateLesson")
+     * @Route("/lessons/lesson/{id}/update", name="app_updateLesson")
      */
     public function updateLesson($id ,EntityManagerInterface $entityManager, LessonsRepository $repo, Request $request) : Response
     {
@@ -153,6 +144,27 @@ class LessonsController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/lessons/search", name="app_lessonSearch")
+     */
+    public function lessonSearch(LessonsRepository $repo, Request $request, EntityManagerInterface $entityManager)
+    {        
+        $req = $request->query->all();
+        $query = $entityManager->createQuery(
+            "SELECT u
+            FROM App\Entity\Lessons u
+            WHERE u.title = :request")
+            ->setParameter('request',$req);
+        
+        
+        $result = $query->getResult();
+        $user = $this->getUser();
+        return $this->render('lessons/lessonList.html.twig',[
+            'user' => $user,
+            'lessons' => $result,
+        ]);
+    }
+    
     public function lessonCard(LessonsRepository $repo)
     {
         $lessons = $repo->findall();

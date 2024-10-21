@@ -4,7 +4,8 @@
 
 {% block body %}
     {% if is_granted("ROLE_TEACHER")%}
-            <a href="{{path('app_newLesson')}}"<button type="button" class="btn btn-outline-info w-25">Create a new lesson</button></a>
+            <br>
+            <a href="{{path('app_newLesson')}}"<button type="button" class=" nlessonbtn">Create a new lesson</button></a>
     {% endif %}
     <ul class="pagination p-2">
         <li class="pt-1">Display per page:</li>
@@ -55,10 +56,10 @@
         <ul class="pagination">
             {% if page == 0 %}
                 <li class="page-item disabled">
-                <span class="page-link">Previous</span>
+                <span class="page-link p12">Previous</span>
                 </li>
                 {% else %}
-                    <li class="page-item"><a class="page-link" href={{path("app_lessonsPaginated",{'displayPerPage':currentDisplayPerPag,'page':page-1})}}>Previous</a></li>
+                    <li class="page-item p12"><a class="page-link" href={{path("app_lessonsPaginated",{'displayPerPage':currentDisplayPerPage,'page':page-1})}}>Previous</a></li>
             {% endif %}
             {% for i in range(0,nbPages) %}
                 {% if i == page %}
@@ -66,15 +67,15 @@
                         <a class="page-link" href={{path("app_lessonsPaginated",{'displayPerPage':currentDisplayPerPage, 'page':i})}}> <span class="sr-only">{{i+1}}</span></a>
                     </li>
                     {% else %}
-                        <li class="page-item"><a class="page-link" href={{path("app_lessonsPaginated",{'displayPerPage':currentDisplayPerPage, 'page':i})}}>{{i+1}}</a></li>            
+                        <li class="page-item p12"><a class="page-link" href={{path("app_lessonsPaginated",{'displayPerPage':currentDisplayPerPage, 'page':i})}}>{{i+1}}</a></li>            
                 {% endif %}
             {% endfor %}
             {% if page == nbPages %}
                 <li class="page-item disabled">
-                    <span class="page-link">Next</span>
+                    <span class="page-link p12">Next</span>
                 </li>
                 {% else %}
-                    <li class="page-item"><a class="page-link" href={{path("app_lessonsPaginated",{'displayPerPage':currentDisplayPerPage, 'id':page+1})}}>Next</a></li>
+                    <li class="page-item p12"><a class="page-link" href={{path("app_lessonsPaginated",{'displayPerPage':currentDisplayPerPage, 'page':page+1})}}>Next</a></li>
             {% endif %}
         </ul>
     </nav>

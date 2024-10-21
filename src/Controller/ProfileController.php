@@ -45,5 +45,19 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/addTutor/{id}",  name="app_addTutor", methods={"GET","POST"})
+     */
+    public function addTutor($id, Request $request, UserRepository $repo, EntityManagerInterface $entityManager): Response{
+        $user = $repo->find($id);$user->setRoles( array('ROLE_TEACHER'));
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("home");
+
+        return $this->render('index.html.twig', [
+            'controller_name' => 'AdminPageController',
+        ]);
+    }
     
 }

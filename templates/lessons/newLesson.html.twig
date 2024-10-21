@@ -6,11 +6,39 @@
     <h1>New Lesson</h1>
 
     {{ form_start(LessonForm) }}
-        {{ form_row(LessonForm.title) }}
+        {# {{ form_row(LessonForm.title) }}
         {{ form_row(LessonForm.description) }}
         {{ form_row(LessonForm.contactInformation) }}
         {{ form_row(LessonForm.availableDates) }}
         {{ form_row(LessonForm.category) }}
-        <button type="submit" class="btn">Create the lesson</button>
+        {{ form_row(LessonForm.location) }} #}
+        <div class="form-ctrl">
+            {{ form_label(LessonForm.title) }}
+            {{ form_widget(LessonForm.title) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(LessonForm.description) }}
+            {{ form_widget(LessonForm.description) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(LessonForm.contactInformation) }}
+            {{ form_widget(LessonForm.contactInformation) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(LessonForm.availableDates) }}
+            {{ form_widget(LessonForm.availableDates) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(LessonForm.category) }}
+            {{ form_widget(LessonForm.category) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(LessonForm.location) }}
+            {{ form_widget(LessonForm.location) }}
+        </div>
+        {{ form_widget(LessonForm) }}
+        <button class="btn btn-primary" type="submit">
+            Create the lesson
+        </button>
     {{ form_end(LessonForm) }}
 {% endblock %}

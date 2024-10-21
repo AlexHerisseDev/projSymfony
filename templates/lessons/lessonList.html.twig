@@ -4,7 +4,8 @@
 
 {% block body %}
     {% if is_granted("ROLE_TEACHER")%}
-            <a href="{{path('app_newLesson')}}"<button type="button" class="btn btn-outline-info w-25">Create a new lesson</button></a>
+            <br>
+            <a href="{{path('app_newLesson')}}"<button type="button" class=" nlessonbtn">Create a new lesson</button></a>
     {% endif %}
     <ul class="pagination p-2">
         <li class="pt-1">Display per page:</li>

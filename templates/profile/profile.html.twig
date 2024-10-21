@@ -24,9 +24,9 @@
         {% endfor %}
     {% endif %}
     {% if user.id == app.user.id %}
-        <span  class="m-3">Here are the lessons you are currently participating in: </span>
+        <p class="m-3">Here are the lessons you have currently pinned: </p>
         {% else %}
-            <span class="m-3">Here are the lessons this user is currently participating in: </span>
+            <p class="m-3">Here are the lessons this user currently has pinned: </p>
     {% endif %}
     {% for studentLesson in user.getStudentsLessons %}
         {{include('lessonCard/_lessonCard.html.twig', {lesson:studentLesson})}}

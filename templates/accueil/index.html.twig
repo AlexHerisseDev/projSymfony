@@ -1,36 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Welcome to TutorShip{% endblock %}
 
 {% block body %}
-    {# {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %} #}
 
-    <h1 class="text-center">Welcome to Teachar</h1>
+<div class="index-container">
+    <div class="title-container">
+        <span class="titlep1">Welcome to Tutor</span>
+        <span class="titlep2">Ship</span>
+    </div>
+
     {% if app.user == false%}
-        <h2 class="text-center">Please log in or register to access the rest of the site</h2>
-        <div class="row d-flex justify-content-center">
-            <a href="{{path('app_login')}}"<button type="button" class="btn btn-outline-info w-25">Login</button></a>
-            <a href="{{path('app_register')}}"<button type="button" class="btn btn-outline-info w-25">Register</button></a>
+        <div class="guest-index">
+            <h2 class="text-center">TutorShip is a new way to easily get in contact with Tutors all around the world in order to learn new skills and sharpen your existing ones. </h2>
+            <div class="guest-loginreg-container">
+                <span class="guest-loginreg">Please</span>
+                <a href="{{path("app_login")}}">
+                    <span class="guest-loginreg guest-loginreg-link"> log in </span>
+                </a>
+                <span class="guest-loginreg">or</span>
+                <a href="{{path("app_register")}}">
+                    <span class="guest-loginreg guest-loginreg-link"> register </span>
+                </a>
+                <span class="guest-loginreg">in order to access the rest of the site.</span>   
             </div>
+                     
+
+        </div> 
     {% endif %}
 
     {% if is_granted("ROLE_USER")%}
         {% if user.getUserInfo.getUsername == "username" %}
             <h4 class="text-center">Please feel free to change your username and avatar by going to your profile in the dropdown menu located in the top-right of your screen</h2>
         {% endif %}
-        <p class="m-2">Feel free to go the lesson list at the top of the page to browse our {{nbLessons}} currently available lessons.</p>
+        <p class="m-2">Feel free to browser the list of lessons accesible at the top of your screen to browse our {{nbLessons}} currently available lessons.</p>
     {% endif %}
 
     {% if is_granted("ROLE_TEACHER")%}
-        <h1>YOU ARE A TEACHER</h1>
+        <p class="m-2">As a teacher, feel free to access the list of lessons, then press the "create a lesson" button to create a new lesson.</p>
     {% endif %}
 
-    {% if is_granted("ROLE_ADMIN") %}
-        <a href="{{path('app_adminPage')}}"<button type="button" class="btn btn-outline-warning">Admin Page</button></a>
-    {% endif %}
-    
+</div>
+
 {% endblock %}
