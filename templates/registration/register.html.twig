@@ -3,19 +3,31 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <div class="bg-container">
+        <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password',
-        }) }}
+        <div class="form-control">
+            {{ form_start(registrationForm) }}
+                <div class="form-ctrl">
+                    {{ form_label(registrationForm.email) }}
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'logRegInputBar'}}) }}
+                </div>
+                <div class="form-ctrl">
+                {{ form_label(registrationForm.plainPassword.first) }}
+                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'logRegInputBar'}}) }}
+                {{ form_label(registrationForm.plainPassword.second) }}
+                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'logRegInputBar'}}) }}
+                {# {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password',
+                }) }} #}
 
-        {{ form_row(registrationForm.agreeTerms) }}
-        
-    {{ form_widget(registrationForm) }}
-        <button class="btn btn-primary" type="submit">
-            Register
-        </button>
-    {{ form_end(registrationForm) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+                
+            {{ form_widget(registrationForm) }}
+                <button class="btn btn-primary" type="submit">
+                    Register
+                </button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
 {% endblock %} 
