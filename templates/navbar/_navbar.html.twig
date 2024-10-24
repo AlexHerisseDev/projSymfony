@@ -13,7 +13,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{path("home")}}">Home</a>
                     </li>
-                    {% if is_granted("ROLE_USER")%}
+                    {% if is_granted("ROLE_USER")%} {# This section is only shown to users that have already logged in #}
                         <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{path('app_lessonsPaginated', {'displayPerPage':10, 'page':0})}}" tabindex="-1">List of lessons</a>
                         </li>

@@ -26,8 +26,9 @@ class AdminPageController extends AbstractController
     /**
      * @Route("/delete/{id}", name="app_delete", methods={"GET","POST"})
      */
-    public function delete( $id, Request $request, UserRepository $repo, EntityManagerInterface $entityManager): Response
+    public function delete( $id, UserRepository $repo, EntityManagerInterface $entityManager): Response
     {   
+        //This function gets the user from its ID and then deletes it from the database
         $user = $repo->find($id);
         $userInfo = $user->getUserInfo();
         $entityManager->remove($userInfo);

@@ -37,13 +37,12 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $userInfo = new UserInfo();
-            $userInfo->setUser($user)
+            $userInfo->setUser($user) //The user is assigned a basic username and avatar that they will need to change later
                     ->setUsername("username")
                     ->setAvatar("https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png");
 
             $entityManager->persist($userInfo);
             $entityManager->flush();
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('home');
         }

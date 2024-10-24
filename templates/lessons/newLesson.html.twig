@@ -6,39 +6,35 @@
     <h1>New Lesson</h1>
 
     {{ form_start(LessonForm) }}
-        {# {{ form_row(LessonForm.title) }}
-        {{ form_row(LessonForm.description) }}
-        {{ form_row(LessonForm.contactInformation) }}
-        {{ form_row(LessonForm.availableDates) }}
-        {{ form_row(LessonForm.category) }}
-        {{ form_row(LessonForm.location) }} #}
+    <div class="form-control">
         <div class="form-ctrl">
             {{ form_label(LessonForm.title) }}
-            {{ form_widget(LessonForm.title) }}
+            {{ form_widget(LessonForm.title, {'attr': {'class': 'newUpLessonBar'}}) }}
         </div>
         <div class="form-ctrl">
             {{ form_label(LessonForm.description) }}
-            {{ form_widget(LessonForm.description) }}
+            {{ form_widget(LessonForm.description, {'attr': {'class': 'newUpLessonBar'}}) }}
         </div>
         <div class="form-ctrl">
             {{ form_label(LessonForm.contactInformation) }}
-            {{ form_widget(LessonForm.contactInformation) }}
+            {{ form_widget(LessonForm.contactInformation, {'attr': {'class': 'newUpLessonBar'}}) }}
         </div>
         <div class="form-ctrl">
             {{ form_label(LessonForm.availableDates) }}
-            {{ form_widget(LessonForm.availableDates) }}
+            {{ form_widget(LessonForm.availableDates, {'attr': {'class': 'newUpLessonBar'}}) }}
         </div>
         <div class="form-ctrl">
             {{ form_label(LessonForm.category) }}
-            {{ form_widget(LessonForm.category) }}
+            {{ form_widget(LessonForm.category, {'attr': {'class': 'newUpLessonBar'}}) }}
         </div>
         <div class="form-ctrl">
             {{ form_label(LessonForm.location) }}
-            {{ form_widget(LessonForm.location) }}
+            {{ form_widget(LessonForm.location, {'attr': {'class': 'newUpLessonBar'}}) }}
         </div>
         {{ form_widget(LessonForm) }}
-        <button class="btn btn-primary" type="submit">
+        <button class="btn btn-primary w-100" type="submit">
             Create the lesson
         </button>
+        </div>
     {{ form_end(LessonForm) }}
 {% endblock %}

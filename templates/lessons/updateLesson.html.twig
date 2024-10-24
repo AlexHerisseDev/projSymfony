@@ -5,13 +5,34 @@
 {% block body %}
     <h1>Lesson Update</h1>
 
-    <span>Fields with a</span> <span class="text-danger"> * </span> <span>are required.</span>
     {{ form_start(UpdateLessonForm) }}
-        {{ form_row(UpdateLessonForm.title) }} <span class="text-danger">*</span>
-        {{ form_row(UpdateLessonForm.description) }}
-        {{ form_row(UpdateLessonForm.contactInformation) }} <span class="text-danger">*</span>
-        {{ form_row(UpdateLessonForm.availableDates) }} <span class="text-danger">*</span>
-        {{ form_row(UpdateLessonForm.category) }}
-        <button type="submit" class="btn">Update the lesson</button>
+        <div class="form-ctrl">
+            {{ form_label(UpdateLessonForm.title) }}
+            {{ form_widget(UpdateLessonForm.title) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(UpdateLessonForm.description) }}
+            {{ form_widget(UpdateLessonForm.description) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(UpdateLessonForm.contactInformation) }}
+            {{ form_widget(UpdateLessonForm.contactInformation) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(UpdateLessonForm.availableDates) }}
+            {{ form_widget(UpdateLessonForm.availableDates) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(UpdateLessonForm.category) }}
+            {{ form_widget(UpdateLessonForm.category) }}
+        </div>
+        <div class="form-ctrl">
+            {{ form_label(UpdateLessonForm.location) }}
+            {{ form_widget(UpdateLessonForm.location) }}
+        </div>
+        {{ form_widget(UpdateLessonForm) }}
+        <button class="btn btn-primary" type="submit">
+            Update the lesson
+        </button>
     {{ form_end(UpdateLessonForm) }}
 {% endblock %}

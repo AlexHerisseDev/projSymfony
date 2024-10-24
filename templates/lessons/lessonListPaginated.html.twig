@@ -7,6 +7,7 @@
             <br>
             <a href="{{path('app_newLesson')}}"<button type="button" class=" nlessonbtn">Create a new lesson</button></a>
     {% endif %}
+{# The following part allows the user to choose how many lessons they wish to show in a single page. #}
     <ul class="pagination p-2">
         <li class="pt-1">Display per page:</li>
         <li class="page-item"><a class="page-link" href={{path("app_lessonList")}}>Unlimited</a></li>
@@ -47,12 +48,14 @@
                 </li>
         {% endif %}
     </ul>
+    
     <h1>Here is a list of all currently available lessons:</h1>
     {% for lesson in lessons|slice(page*(currentDisplayPerPage),currentDisplayPerPage)%}
                 {{include('lessonCard/_lessonCard.html.twig', {lesson:lesson})}}
     {% endfor %}
 
-    <nav aria-label="Page navigation example">
+{# The following part allows the user to navigate between pages, disabling and enabling certain links depending on how close the user is to the start/end of the list#}
+    <nav>
         <ul class="pagination">
             {% if page == 0 %}
                 <li class="page-item disabled">
@@ -79,7 +82,5 @@
             {% endif %}
         </ul>
     </nav>
-
-
 
 {% endblock %}

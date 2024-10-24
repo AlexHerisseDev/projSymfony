@@ -5,8 +5,9 @@
 {% block body %}
     {% if is_granted("ROLE_TEACHER")%}
             <br>
-            <a href="{{path('app_newLesson')}}"<button type="button" class=" nlessonbtn">Create a new lesson</button></a>
+            <a href="{{path('app_newLesson')}}"<button type="button" class="nlessonbtn">Create a new lesson</button></a> {# If the user is a teacher, they can create a lesson here #}
     {% endif %}
+    {# The following part allows the user to choose how many lessons they wish to show in a single page. #}
     <ul class="pagination p-2">
         <li class="pt-1">Display per page:</li>
         <li class="page-item disabled"><a class="page-link" href="#">Unlimited</a></li>

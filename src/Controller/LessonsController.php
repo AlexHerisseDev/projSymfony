@@ -35,8 +35,8 @@ class LessonsController extends AbstractController
     public function lessonListPaginated($displayPerPage, $page, LessonsRepository $repo): Response
     {
         $lessons = $repo->findall();
-        $nbLessons = count($lessons);
-        $nbPages=(int) ($nbLessons/$displayPerPage);
+        $nbLessons = count($lessons); //The total amount of lessons is stored in a variable named nbLessons
+        $nbPages=(int) ($nbLessons/$displayPerPage); //The nbLessons variable is then divided by the requested amount of lessons display per page, and then rounded to count the amount of pages necessary to display all lessons
 
         return $this->render('lessons/lessonListPaginated.html.twig', [
             'lessons'=>$lessons,
@@ -149,15 +149,16 @@ class LessonsController extends AbstractController
      */
     public function lessonSearch(LessonsRepository $repo, Request $request, EntityManagerInterface $entityManager)
     {        
-        $req = $request->query->all();
-        $query = $entityManager->createQuery(
+        $req = $request->query->all(); //Retrieves the parameters and stores them in a variable
+
+        $query = $entityManager->createQuery( //A query is created, allowing us to search specific lessons according to the request
             "SELECT u
             FROM App\Entity\Lessons u
             WHERE u.title = :request")
             ->setParameter('request',$req);
         
         
-        $result = $query->getResult();
+        $result = $query->getResult(); //The result of the query is stored in a variable, which is then used instead of every single lesson to display on the lessonList page, which now only displays the requested title
         $user = $this->getUser();
         return $this->render('lessons/lessonList.html.twig',[
             'user' => $user,

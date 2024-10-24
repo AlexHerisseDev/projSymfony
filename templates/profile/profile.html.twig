@@ -13,8 +13,8 @@
             <p>No description available</p>
     {% endif %}
     {% if user.id == app.user.id or (is_granted('ROLE_ADMIN'))%}
-        <a href="{{path("app_update", {'id':infos.User.id})}}"<button type="button" class="btn btn-outline-info">Edit Account</button></a>
-        <a href="{{path('app_delete', {'id': user.id})}}" class="btn btn-danger text-center" onclick="return confirm('Are you sure you wish to delete your account?')">Delete Account</a>
+        <a href="{{path("app_update", {'id':infos.User.id})}}"<button type="button" class="nlessonbtn">Edit Account</button></a>
+        <a href="{{path('app_delete', {'id': user.id})}}" class="redbtn" onclick="return confirm('Are you sure you wish to delete your account?')">Delete Account</a>
     {% endif %}
 
     {% if is_granted("ROLE_TEACHER") %}

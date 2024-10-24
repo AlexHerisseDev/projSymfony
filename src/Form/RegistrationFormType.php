@@ -22,6 +22,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'required' => true,
+                'label' => 'Email *',
                 'constraints' =>[
                     new Assert\Email([
                         'message'=>'This is not the corect email format'
@@ -34,6 +35,7 @@ class RegistrationFormType extends AbstractType
 
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'Agree to the terms *',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Please agree to our terms in order to create an account.',
@@ -46,8 +48,8 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'The password fields must match.',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options'  => ['label' => 'Password *'],
+                'second_options' => ['label' => 'Repeat Password *'],
 
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],

@@ -10,8 +10,8 @@
         <span class="titlep2">Ship</span>
     </div>
 
-    {% if app.user == false%}
-        <div class="guest-index">
+    {% if app.user == false%} {# Checks if the user is logged in: if not, then the follow page will be shown, asking the guest to sign in or register #}
+         <div class="guest-index"> 
             <h2 class="text-center">TutorShip is a new way to easily get in contact with Tutors all around the world in order to learn new skills and sharpen your existing ones.</h2>
             <div class="guest-loginreg-container">
                 <span class="guest-loginreg">Please</span>
@@ -24,19 +24,17 @@
                 </a>
                 <span class="guest-loginreg">in order to access the rest of the site.</span>   
             </div>
-                     
-
         </div> 
     {% endif %}
 
-    {% if is_granted("ROLE_USER")%}
-        {% if user.getUserInfo.getUsername == "username" %}
+    {% if is_granted("ROLE_USER")%} {# If the user is logged in, they have access to the rest of the site #}
+        {% if user.getUserInfo.getUsername == "username" %} {# If the user has not yet changed their username from the basic one given to them upon creating their account, they will be prompted to change it as well as their profile picture #}
             <h4 class="text-center">Please feel free to change your username and avatar by going to your profile in the dropdown menu located in the top-right of your screen</h2>
         {% endif %}
-        <p class="m-2 indexText">Feel free to browser the list of lessSDons accesible at the top of your screen to browse our {{nbLessons}} currently available lessons.</p>
+        <p class="m-2 indexText">Feel free to browser the list of lessons accesible at the top of your screen to browse our {{nbLessons}} currently available lessons.</p>
     {% endif %}
 
-    {% if is_granted("ROLE_TEACHER")%}
+    {% if is_granted("ROLE_TEACHER")%} {# If the user is a tutor, they will be guided to the list of lessons, where they will be able to create a new lesson #}
         <p class="m-2 indexText">As a teacher, feel free to access the list of lessons, then press the "create a lesson" button to create a new lesson.</p>
     {% endif %}
 

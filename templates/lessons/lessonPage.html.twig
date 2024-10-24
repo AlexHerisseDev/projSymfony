@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    {% if is_granted("ROLE_TEACHER")%}
+    {% if is_granted("ROLE_TEACHER")%} {# If the user is a tutor, they will be reminded whether or not they are the one who created the lesson #}
         {% if currentUser == lesson.getTeacherId() %}
           <h3>You are the owner of this lesson.</h3>
         {% endif %}
@@ -50,7 +50,7 @@
                     </a>
                 {% endif %}
 
-                <div class="lessonPin">
+                <div class="lessonPin"> {# By clicking the available button, the user can choose to pin/unpin the lesson to more easily find it in their profile #}
                     {% if lesson.getLessonsStudents().contains(currentUser) %}
                         <p class="pt-3">You have already pinned this lesson, would you like to unpin it?</p>
                         <a href="{{path('app_removeStudentfromLesson', {'id':lesson.getId})}}">

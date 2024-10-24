@@ -38,7 +38,7 @@ class SecurityController extends AbstractController
         }
         else{
             $user = $users->getUserIdentifier();
-            $infos = $repo->findOneBy(['email'=>$user]);
+            $infos = $repo->findOneBy(['email'=>$user]); //Fetches the current user (if logged in) to display their username in the top right
             return $this->render('navbar/_navbar.html.twig',[
             'infos'=>$infos->getUserInfo(),
         ]);
@@ -46,7 +46,11 @@ class SecurityController extends AbstractController
     }
 
     public function footer(){
-            return $this->render('navbar/_footer.html.twig');
+        return $this->render('navbar/_footer.html.twig');
+    }
+
+    public function topButton(){
+        return $this->render('navbar/_topButton.html.twig');
     }
 
     /**
@@ -100,11 +104,12 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            //If the information input by the user is not empty, then it will get updated
             if($form->get('email')->getData()!=null){
                 $user->setEmail($form->get('email')->getData());
             }
             if($form->get('password')->getData()!=null) {
+                // encode the plain password
                 $user->setPassword(
                 $userPasswordHasher->hashPassword(
                         $user,
