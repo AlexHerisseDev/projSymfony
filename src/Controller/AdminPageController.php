@@ -28,7 +28,7 @@ class AdminPageController extends AbstractController
      */
     public function delete( $id, UserRepository $repo, EntityManagerInterface $entityManager): Response
     {   
-        //This function gets the user from its ID and then deletes it from the database
+        //This function gets the user from its ID and then deletes it from the userInfo then user tables
         $user = $repo->find($id);
         $userInfo = $user->getUserInfo();
         $entityManager->remove($userInfo);

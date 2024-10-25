@@ -17,7 +17,8 @@ class UpdateFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
+        // Fields are not required because the user might not want to update every field at once
+        $builder 
             ->add('email',
              null, 
              ['required' => false],

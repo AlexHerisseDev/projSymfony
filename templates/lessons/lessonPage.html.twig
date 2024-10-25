@@ -20,9 +20,15 @@
                     <span class="badge text-bg-primary">{{lesson.getCategory()}}</span>
                 </div>
                 <div class="pb-2">
+                    <p class="lessonPageGuides">Tutor: </p>
+                    <a href="{{path('app_profile', {'id': lesson.getTeacherId.getId})}}">
+                        <span>{{lesson.getTeacherId().getUserInfo().getUsername()}}</span>
+                    </a>
+                </div>
+                <div class="pb-2">
                     <p class="lessonPageGuides">Description: </p>
                     {% if lesson.getDescription is not null %}
-                        {{lesson.getDescription()}}
+                        <p>{{lesson.getDescription()}}</p>
                         {% else %}
                             <p>No description was provided.</p>
                     {% endif %}
@@ -30,7 +36,7 @@
                 <div class="pb-2">
                     <p class="lessonPageGuides">Available dates: </p> 
                     {% if lesson.getAvailableDates is not null %}
-                        {{lesson.getAvailableDates()}}
+                        </p>{{lesson.getAvailableDates()}}</p>
                         {% else %}
                             <p>No specific date information was provided.</p>
                     {% endif %}
@@ -38,7 +44,7 @@
                 <div class="pb-2">
                     <p class="lessonPageGuides">Contact information: </p> 
                     {% if lesson.getContactInformation is not null %}
-                        {{lesson.getContactInformation()}}
+                        </p>{{lesson.getContactInformation()}}</p>
                         {% else %}
                             <p>No specific contact information was provided.</p>
                     {% endif %}

@@ -25,7 +25,6 @@
                         <a href="{{path('app_addTutor', {'id': user.id})}}" class="btn btn-warning btn-block text-center w-100 cPro">Make Tutor</a>
                     {% endif %}
                     <a href="{{path('app_delete', {'id': user.id})}}" class="btn btn-danger btn-block text-center w-100 cPro" onclick="return confirm('Are you sure you wish to delete this profile?')">Delete</a>
-                {# TODO: add a button to make user into a teacher, so it'll add the ROLE_TEACHER to their role (setrole += ROLE_TEACHER basically?)#}
                 </div>
             </div>
         {% endfor %}

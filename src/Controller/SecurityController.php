@@ -134,6 +134,4 @@ class SecurityController extends AbstractController
             'updateForm' => $form->createView(),
         ]);
     }
-
 }
-
