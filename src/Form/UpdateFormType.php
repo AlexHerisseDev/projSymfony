@@ -9,9 +9,11 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class UpdateFormType extends AbstractType
 {
@@ -19,10 +21,18 @@ class UpdateFormType extends AbstractType
     {
         // Fields are not required because the user might not want to update every field at once
         $builder 
-            ->add('email',
-             null, 
-             ['required' => false],
-             ['label' => 'Email'])
+        ->add('email', EmailType::class, [
+            'required' => false,
+            'label' => 'Email',
+            'constraints' =>[
+                new Assert\Email([
+                    'message'=>'This is not the corect email format'
+                ]),
+                new Assert\NotBlank([
+                    'message' => 'This field can not be blank'
+                ])
+            ],
+        ])
             ->add('password', 
             null, 
             ['required' => false],

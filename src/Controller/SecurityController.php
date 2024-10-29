@@ -56,7 +56,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(AuthenticationUtils $authenticationUtils, EntityManagerInterface $entityManager, LessonsRepository $lessonsRepo) : Response
+    public function home(LessonsRepository $lessonsRepo) : Response
     {   
         $user = $this->getUser();
         $lessons = $lessonsRepo->findall();
